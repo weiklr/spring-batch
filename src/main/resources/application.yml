@@ -1,0 +1,19 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+#    url: jdbc:h2:file:./data/demo
+    driverClassName: org.h2.Driver
+    username: sa
+    platform: h2
+    initialization-mode: always
+  batch:
+    job:
+      enabled: false # do not auto run since we are triggering manually via command line runner
+
+
+job:
+  path: /home/test
+  path2: /home/test2

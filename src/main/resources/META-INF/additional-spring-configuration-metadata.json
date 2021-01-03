@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "job.path",
+      "type": "java.lang.String",
+      "description": "Description for job.path."
+  }
+] }
