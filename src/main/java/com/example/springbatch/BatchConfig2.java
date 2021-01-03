@@ -36,7 +36,7 @@ public class BatchConfig2 {
 
     @Bean
     @JobScope
-    public FlatFileItemReader<Person> backupReader(@Value("#{jobParameters['test']}") String param) {
+    public FlatFileItemReader<Person> backupReader(@Value("#{jobParameters['test2']}") String param) {
         System.out.println("Backup PARAM IS " + param);
         return new FlatFileItemReaderBuilder<Person>()
                 .name("personItemReader")

@@ -28,11 +28,12 @@ public class SpringBatchApplication implements CommandLineRunner {
 
     @Override
     public void run(String ...args) throws Exception {
+        JobParameters jobParameters = getJobParameters();
         JobExecution execution = jobLauncher.run(
                 importUserJob,
-                getJobParameters()
+                jobParameters
         );
-        JobExecution execution1 = jobLauncher.run(importUserJob2, getJobParameters());
+        JobExecution execution1 = jobLauncher.run(importUserJob2, jobParameters);
         System.out.println(execution.getExitStatus());
         System.out.println(execution1.getExecutionContext().toString());
     }
