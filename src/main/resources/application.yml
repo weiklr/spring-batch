@@ -4,7 +4,7 @@ spring:
       enabled: true
   datasource:
     url: jdbc:h2:mem:testdb
-#    url: jdbc:h2:file:./data/demo
+    #    url: jdbc:h2:file:./data/demo
     driverClassName: org.h2.Driver
     username: sa
     platform: h2
@@ -12,8 +12,13 @@ spring:
   batch:
     job:
       enabled: false # do not auto run since we are triggering manually via command line runner
+  # always show ansi colors in console
+  output:
+    ansi:
+      enabled: always
 
 
 job:
-  path: /home/test
-  path2: /home/test2
+  path: '/home/test'
+  path2: '/home/test2'
+  dir: '/mnt/code'
