@@ -34,6 +34,8 @@ public class BatchConfig {
 
   @Autowired JobCompletionNotificationListener jobCompletionNotificationListener;
 
+  @Autowired DataSource dataSource;
+
   @Value("${job.dir}")
   private Path directory;
 
@@ -56,8 +58,7 @@ public class BatchConfig {
 
   @Bean
   @JobScope
-  public FlatFileItemReader<Person> reader(@Value("#{jobParameters['test']}") String param) {
-    System.out.println("PARAM IS " + param);
+  public FlatFileItemReader<Person> reader() {
     return new FlatFileItemReaderBuilder<Person>()
         .name("personItemReader")
         .resource(new ClassPathResource("sample-data.csv"))
@@ -98,13 +99,13 @@ public class BatchConfig {
   }
 
   @Bean
-  public Step step1(JdbcBatchItemWriter<Person> writer) {
+  public Step step1() {
     return stepBuilderFactory
         .get("step1")
         .<Person, Person>chunk(1)
-        .reader(reader(null))
+        .reader(reader())
         .processor(processor())
-        .writer(writer)
+        .writer(writer(dataSource))
         .build();
   }
 
